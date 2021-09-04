@@ -1,0 +1,33 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Show</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>CREATED_AT</th>
+                <th>UPDATED_AT</th>
+            </tr>
+            <tr>
+                <td>{{$post->id}}</td>
+                <td>{{$post->title}}</td>
+                <td>{{$post->content}}</td>
+                <td>{{$post->created_at}}</td>
+                <td>{{$post->updated_at}}</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <form action="{{route('posts.delete', $post->id)}}" method="post">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
