@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePost;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -16,7 +16,7 @@ class PostController extends Controller
         return view('admin.create.index'); 
     }
 
-    public function store(Request $request){ 
+    public function store(StoreUpdatePost $request){ 
         /*
         Post::create([
             'title' => $request->title,
