@@ -3,6 +3,9 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::any('/posts/filter', [PostController::class, 'filter'])->name('admin.filter');
+
 Route::put('/posts/edit/{id}', [PostController::class, 'change'])->name('admin.change');
 
 Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('admin.edit');

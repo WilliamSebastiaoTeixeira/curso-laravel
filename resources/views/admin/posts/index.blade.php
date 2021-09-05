@@ -11,6 +11,13 @@
             <hr>
         @endif 
         <h1>Posts</h1>
+
+        <form action="{{route('admin.filter')}}" method="post">
+            @csrf
+            <input type="text" name="filter" id="filter">
+            <button type="submit">Filter</button>
+        </form>
+
         <table>
             <tr>
                 <th>ID</th>
@@ -31,7 +38,10 @@
         </table> 
 
         <hr>
-
-        {{$posts->links()}}
+        @if (isset($filters))
+            {{$posts->appends($filters)->links()}}
+        @else
+            {{$posts->links()}}
+        @endif
     </body>
 </html> 

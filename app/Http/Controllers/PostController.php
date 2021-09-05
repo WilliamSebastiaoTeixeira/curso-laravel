@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePost;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -53,8 +54,16 @@ class PostController extends Controller
             return redirect()->route('admin.posts');
         }
 
-        $post->update(['title' => $request->title, 'content' => $request->content]);
+        //$post->update(['title' => $request->title, 'content' => $request->content]);
+        $post->update($request->except('_token', '_method')); 
 
         return redirect()->route('admin.edit', $id)->with('message', 'Changed'); 
+    }
+
+    public function filter(Request $request){
+        $filters =  $request->except('_token'); 
+
+        $posts = Post::where('title', 'LIKE', "%{$request->filter}%")->orWhere('content', 'LIKE', "%{$request->filter}%")->paginate(2); 
+        return view('admin.posts.index', compact('posts', 'filters')); 
     }
 }
