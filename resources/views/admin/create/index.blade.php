@@ -14,25 +14,7 @@
 
         <form action="{{route('admin.store')}}" method="post">
             @csrf
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Content</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="title" id="title" placeholder="" value="{{old("title")}}">
-                    </td>
-                    <td>
-                        <textarea name="content" id="content" cols="30" rows="1" placeholder="">{{old("content")}}</textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit">Send</button>
-                    </td>
-                </tr>
-            </table>
+            @include('_partials.form')
         </form>
     </body>
 </html> 
