@@ -7,7 +7,7 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function posts(){
         $posts  =  Post::get();
         return view('admin.posts.index', compact('posts'));
     }
@@ -17,30 +17,43 @@ class PostController extends Controller
     }
 
     public function store(StoreUpdatePost $request){
-        /*
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
-        */
         Post::create($request->all());
-        return redirect()->route('posts.index')->with('message','Created');
+        return redirect()->route('admin.posts')->with('message','Created');
     }
 
     public function show($id){
-        //$post = Post::where('id', $id)->first();
         if(!$post = Post::find($id)){
-            return redirect()->route('posts.index');
+            return redirect()->route('admin.posts');
         }
         return view('admin.show.index', compact('post')); 
     }
 
     public function delete($id){
         if(!$post = Post::find($id)){
-            return redirect()->route('posts.index');
+            return redirect()->route('admin.posts');
         }
 
         $post->delete();
-        return redirect()->route('posts.index')->with('message', 'Deleted');
+        return redirect()->route('admin.posts')->with('message', 'Deleted');
+    }
+
+    public function edit($id){
+        if(!$post = Post::find($id)){
+            return redirect()->route('admin.posts');
+        }
+        return view('admin.edit.index', compact('post'));
+    }
+
+    public function change(StoreUpdatePost $request, $id){
+       
+        $post = Post::find($id); 
+
+        if(!$post){
+            return redirect()->route('admin.posts');
+        }
+
+        $post->update(['title' => $request->title, 'content' => $request->content]);
+
+        return redirect()->route('admin.edit', $id)->with('message', 'Changed'); 
     }
 }

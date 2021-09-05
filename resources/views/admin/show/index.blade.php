@@ -21,9 +21,10 @@
 
             <tr>
                 <td>
-                    <form action="{{route('posts.delete', $post->id)}}" method="post">
+                    <form action="{{route('admin.delete', $post->id)}}" method="post">
                         @csrf
-                        <input type="hidden" name="_method" value="DELETE">
+                        @method('delete')
+                        {{--<input type="hidden" name="_method" value="DELETE">--}}
                         <button type="submit">Delete</button>
                     </form>
                 </td>

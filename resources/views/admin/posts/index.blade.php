@@ -2,7 +2,7 @@
     <head>
     </head>
     <body>
-        <a href="{{ route('posts.create') }}">Create New</a>
+        <a href="{{ route('admin.create') }}">Create New</a>
         <hr>
         @if (session('message'))
             <div>
@@ -17,13 +17,15 @@
                 <th>TITLE</th>
                 <th>CONTENT</th>
                 <th>DETAILS</th>
+                <th>EDIT</th>
             </tr>
             @foreach($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->content}}</td>
-                    <td><a href="{{route('posts.show', $post->id)}}">Open</a></td>
+                    <td><a href="{{route('admin.show', $post->id)}}">Show</a></td>
+                    <td><a href="{{route('admin.edit', $post->id)}}">Edit</a></td>
                 </tr>
             @endforeach
         </table> 
