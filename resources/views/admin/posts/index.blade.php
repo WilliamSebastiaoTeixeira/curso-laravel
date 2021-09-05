@@ -29,5 +29,9 @@
                 </tr>
             @endforeach
         </table> 
+
+        <hr>
+
+        {{$posts->links()}}
     </body>
 </html> 

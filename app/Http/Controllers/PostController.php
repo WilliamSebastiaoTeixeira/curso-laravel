@@ -8,7 +8,8 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function posts(){
-        $posts  =  Post::get();
+        //$posts  =  Post::orderBy('id', 'DESC')->paginate(2);
+        $posts  =  Post::latest()->paginate(2);
         return view('admin.posts.index', compact('posts'));
     }
 
