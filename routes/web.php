@@ -19,3 +19,9 @@ Route::delete('/posts/{id}', [PostController::class,'delete'])->name('admin.dele
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('admin.show');
 
 Route::get('/posts', [PostController::class, 'posts'])->name('admin.posts');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
