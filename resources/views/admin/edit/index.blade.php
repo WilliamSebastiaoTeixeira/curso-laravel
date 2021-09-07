@@ -26,7 +26,7 @@
         <hr>
     @endif
 
-    <form action="{{route('admin.change', $post->id)}}" method="post">
+    <form action="{{route('admin.change', $post->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         @include('admin._partials.form')

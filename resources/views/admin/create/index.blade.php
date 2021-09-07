@@ -14,7 +14,7 @@
         </ul>
     @endif
 
-    <form action="{{route('admin.store')}}" method="post">
+    <form action="{{route('admin.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         @include('admin._partials.form')
     </form>

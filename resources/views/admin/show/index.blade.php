@@ -28,10 +28,10 @@
                 <form action="{{route('admin.delete', $post->id)}}" method="post">
                     @csrf
                     @method('delete')
-                    {{--<input type="hidden" name="_method" value="DELETE">--}}
                     <button type="submit">Delete</button>
                 </form>
             </td>
         </tr>
     </table>
+    <img src="{{asset("storage/{$post->image}")}}" alt="{{$post->title}}" width="1920">
 @endsection

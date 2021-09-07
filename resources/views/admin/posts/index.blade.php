@@ -24,6 +24,7 @@
             <th>ID</th>
             <th>TITLE</th>
             <th>CONTENT</th>
+            <th>IMAGE</th>
             <th>DETAILS</th>
             <th>EDIT</th>
         </tr>
@@ -32,6 +33,7 @@
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
                 <td>{{$post->content}}</td>
+                <td><img src="{{asset("storage/{$post->image}")}}" alt="{{$post->title}}" width="320"></td>
                 <td><a href="{{route('admin.show', $post->id)}}">Show</a></td>
                 <td><a href="{{route('admin.edit', $post->id)}}">Edit</a></td>
             </tr>
