@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function posts(){
         //$posts  =  Post::orderBy('id', 'DESC')->paginate(2);
-        $posts  =  Post::latest()->paginate(2);
+        $posts  =  Post::latest()->paginate(4);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -71,7 +71,7 @@ class PostController extends Controller
 
         $data = $request->except('_token', '_method'); 
 
-        if($request->image->isValid()){
+        if($request->image && $request->image->isValid()){
 
             if(Storage::exists($post->image)){
                 Storage::delete($post->image);
@@ -82,7 +82,7 @@ class PostController extends Controller
             $data['image'] = $file;
         }
 
-        $post->update($data); 
+        $post->update($data);
 
         return redirect()->route('admin.edit', $id)->with('message', 'Changed'); 
     }
@@ -90,7 +90,7 @@ class PostController extends Controller
     public function filter(Request $request){
         $filters =  $request->except('_token'); 
 
-        $posts = Post::where('title', 'LIKE', "%{$request->filter}%")->orWhere('content', 'LIKE', "%{$request->filter}%")->paginate(2); 
+        $posts = Post::where('title', 'LIKE', "%{$request->filter}%")->orWhere('content', 'LIKE', "%{$request->filter}%")->paginate(4); 
         return view('admin.posts.index', compact('posts', 'filters')); 
     }
 }
